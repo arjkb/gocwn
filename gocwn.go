@@ -26,6 +26,19 @@ type Session struct {
 	CapacityDose2 int  `json:"available_capacity_dose2"`
 }
 
+func main() {
+	results, err := GetResults(307, time.Now())
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, center := range results.Centers {
+		for _, session := range center.Sessions {
+			fmt.Printf("%-40s %s %-12s %d %4d %4d\n", center.Name, session.Date, session.Vaccine, session.MinimumAge, session.CapacityDose1, session.CapacityDose2)
+		}
+	}
+}
+
 // GenerateApiUrl generates the URL that must be used
 // for the given district id and date.
 func GenerateApiUrl(districtId int, date time.Time) string {
@@ -57,17 +70,4 @@ func GetResults(district_id int, date time.Time) (*ApiResult, error) {
 	}
 
 	return &result, nil
-}
-
-func main() {
-	results, err := GetResults(307, time.Now())
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	for _, center := range results.Centers {
-		for _, session := range center.Sessions {
-			fmt.Printf("%-40s %s %-12s %d %4d %4d\n", center.Name, session.Date, session.Vaccine, session.MinimumAge, session.CapacityDose1, session.CapacityDose2)
-		}
-	}
 }
