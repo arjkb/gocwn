@@ -8,8 +8,6 @@ import (
 	"time"
 )
 
-const BASE_URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict"
-
 type ApiResult struct {
 	Centers []*Center
 }
@@ -27,6 +25,17 @@ type Session struct {
 	CapacityDose2 int
 }
 
+func GenerateApiUrl(districtId int, date time.Time) string {
+	const BASE_URL_CALENDAR_BY_DISTRICT = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict"
+
+	// there's probably a better way to add query params to url
+	v := url.Values{}
+	v.Set("district_id", strconv.Itoa(districtId))
+	v.Set("date", date.Format("02-01-2006"))
+
+	return BASE_URL_CALENDAR_BY_DISTRICT + "?" + v.Encode()
+}
+
 func main() {
-	fmt.Println("hello")
+	fmt.Println(GenerateApiUrl(307, time.Now()))
 }
