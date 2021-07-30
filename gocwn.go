@@ -39,19 +39,6 @@ func main() {
 	}
 }
 
-// GenerateApiUrl generates the URL that must be used
-// for the given district id and date.
-func GenerateApiUrl(districtId int, date time.Time) string {
-	const BASE_URL_CALENDAR_BY_DISTRICT = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict"
-
-	// there's probably a better way to add query params to url
-	v := url.Values{}
-	v.Set("district_id", strconv.Itoa(districtId))
-	v.Set("date", date.Format("02-01-2006"))
-
-	return BASE_URL_CALENDAR_BY_DISTRICT + "?" + v.Encode()
-}
-
 // GetResults calls the API and returns the result.
 func GetResults(district_id int, date time.Time) (*ApiResult, error) {
 	resp, err := http.Get(GenerateApiUrl(district_id, date))
@@ -70,4 +57,17 @@ func GetResults(district_id int, date time.Time) (*ApiResult, error) {
 	}
 
 	return &result, nil
+}
+
+// GenerateApiUrl generates the URL that must be used
+// for the given district id and date.
+func GenerateApiUrl(districtId int, date time.Time) string {
+	const BASE_URL_CALENDAR_BY_DISTRICT = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict"
+
+	// there's probably a better way to add query params to url
+	v := url.Values{}
+	v.Set("district_id", strconv.Itoa(districtId))
+	v.Set("date", date.Format("02-01-2006"))
+
+	return BASE_URL_CALENDAR_BY_DISTRICT + "?" + v.Encode()
 }
