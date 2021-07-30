@@ -11,12 +11,10 @@ import (
 )
 
 type ApiResult struct {
-	Centers []*Center
-}
-
-type Center struct {
-	Name     string
-	Sessions []*Session
+	Centers []*struct {
+		Name     string
+		Sessions []*Session
+	}
 }
 
 type Session struct {
