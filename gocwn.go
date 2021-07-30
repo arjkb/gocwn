@@ -26,6 +26,8 @@ type Session struct {
 	CapacityDose2 int  `json:"available_capacity_dose2"`
 }
 
+// GenerateApiUrl generates the URL that must be used
+// for the given district id and date.
 func GenerateApiUrl(districtId int, date time.Time) string {
 	const BASE_URL_CALENDAR_BY_DISTRICT = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict"
 
@@ -37,6 +39,7 @@ func GenerateApiUrl(districtId int, date time.Time) string {
 	return BASE_URL_CALENDAR_BY_DISTRICT + "?" + v.Encode()
 }
 
+// GetResults calls the API and returns the result.
 func GetResults(district_id int, date time.Time) (*ApiResult, error) {
 	resp, err := http.Get(GenerateApiUrl(district_id, date))
 	if err != nil {
