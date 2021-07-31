@@ -26,6 +26,15 @@ type Session struct {
 	CapacityDose2 int  `json:"available_capacity_dose2"`
 }
 
+type ValidSession struct {
+	Hospital string
+	Date     string
+	Vaccine  string
+	// AgeBracket string
+	CapacityDose1 int
+	CapacityDose2 int
+}
+
 func main() {
 	results, err := GetResults(307, time.Now())
 	if err != nil {
