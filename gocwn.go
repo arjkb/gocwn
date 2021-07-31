@@ -41,10 +41,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	for _, center := range results.Centers {
-		for _, session := range center.Sessions {
-			fmt.Printf("%-40s %s %-12s %d %4d %4d\n", center.Name, session.Date, session.Vaccine, session.MinimumAge, session.CapacityDose1, session.CapacityDose2)
-		}
+	for _, session := range GetSessionsWithSlots(results) {
+		fmt.Printf("%-40s %s %-12s %4d %4d\n", session.Hospital, session.Date, session.Vaccine, session.CapacityDose1, session.CapacityDose2)
 	}
 }
 
