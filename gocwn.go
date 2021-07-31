@@ -68,6 +68,25 @@ func GetResults(district_id int, date time.Time) (*ApiResult, error) {
 	return &result, nil
 }
 
+// Get only those sessions which have available slots.
+func GetSessionsWithSlots(result *ApiResult) []ValidSession {
+	var validSessions []ValidSession
+	for _, center := range result.Centers {
+		for _, session := range center.Sessions {
+			if session.CapacityDose1 > 0 || session.CapacityDose2 > 0 {
+				validSessions = append(validSessions, ValidSession{
+					Hospital:      center.Name,
+					Date:          session.Date,
+					Vaccine:       session.Vaccine,
+					CapacityDose1: session.CapacityDose1,
+					CapacityDose2: session.CapacityDose2,
+				})
+			}
+		}
+	}
+	return validSessions
+}
+
 // GenerateApiUrl generates the URL that must be used
 // for the given district id and date.
 func GenerateApiUrl(districtId int, date time.Time) string {
