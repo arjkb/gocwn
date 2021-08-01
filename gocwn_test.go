@@ -11,7 +11,6 @@ func TestGenerateApiUrl10Nov2009(t *testing.T) {
 	expectedUrl := "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?date=10-11-2009&district_id=500"
 	if generatedUrl != expectedUrl {
 		t.Fatalf(`Expected %s, got %s`, expectedUrl, generatedUrl)
-		
 	}
 }
 
@@ -20,7 +19,6 @@ func TestGenerateApiUrl1Mar2020(t *testing.T) {
 	expectedUrl := "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?date=01-03-2020&district_id=500"
 	if generatedUrl != expectedUrl {
 		t.Fatalf(`Expected %s, got %s`, expectedUrl, generatedUrl)
-		
 	}
 }
 
@@ -29,6 +27,5 @@ func TestGenerateApiUrl01Mar2020(t *testing.T) {
 	expectedUrl := "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?date=01-03-2020&district_id=500"
 	if generatedUrl != expectedUrl {
 		t.Fatalf(`Expected %s, got %s`, expectedUrl, generatedUrl)
-		
 	}
 }
