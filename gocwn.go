@@ -47,8 +47,8 @@ func main() {
 }
 
 // GetResults calls the API and returns the result.
-func GetResults(district_id int, date time.Time) (*ApiResult, error) {
-	resp, err := http.Get(GenerateApiUrl(district_id, date))
+func GetResults(districtId int, date time.Time) (*ApiResult, error) {
+	resp, err := http.Get(GenerateApiUrl(districtId, date))
 	if err != nil {
 		return nil, err
 	}
