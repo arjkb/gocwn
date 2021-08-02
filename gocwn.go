@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
@@ -36,7 +37,9 @@ type ValidSession struct {
 }
 
 func main() {
-	results, err := GetResults(307, time.Now())
+	districtId := flag.Int("district", 307, "id of district whose slot details should be shown")
+	flag.Parse()
+	results, err := GetResults(*districtId, time.Now())
 	if err != nil {
 		log.Fatal(err)
 	}
