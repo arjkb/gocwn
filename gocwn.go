@@ -45,7 +45,7 @@ func main() {
 	}
 
 	for _, session := range GetSessionsWithSlots(results) {
-		fmt.Printf("%-40s %s %-12s %4d %4d\n", session.Hospital, session.Date, session.Vaccine, session.CapacityDose1, session.CapacityDose2)
+		fmt.Println(session)
 	}
 }
 
@@ -99,4 +99,9 @@ func GenerateApiUrl(districtId int, date time.Time) string {
 	v.Set("date", date.Format("02-01-2006"))
 
 	return BASE_URL_CALENDAR_BY_DISTRICT + "?" + v.Encode()
+}
+
+// Method to print a ValidSession.
+func (vs ValidSession) String() string {
+	return fmt.Sprintf("%-40s %s %-12s %4d %4d", vs.Hospital, vs.Date, vs.Vaccine, vs.CapacityDose1, vs.CapacityDose2)
 }
