@@ -106,6 +106,11 @@ func GenerateApiUrl(districtId int, date time.Time) string {
 	return BASE_URL_CALENDAR_BY_DISTRICT + "?" + v.Encode()
 }
 
+// Get age bracket as string, given a Session.
+func GetAgeBracket(vs Session) string {
+	return "" // this is a stub
+}
+
 // Method to print a ValidSession.
 func (vs ValidSession) String() string {
 	return fmt.Sprintf("%-40s %s %-12s %4d %4d", vs.Hospital, vs.Date, vs.Vaccine, vs.CapacityDose1, vs.CapacityDose2)
