@@ -22,15 +22,18 @@ type Session struct {
 	Date          string
 	Vaccine       string
 	MinimumAge    int  `json:"min_age_limit"`
+	MaximumAge    int  `json:"max_age_limit"`
 	AllowAllAge   bool `json:"allow_all_age"`
 	CapacityDose1 int  `json:"available_capacity_dose1"`
 	CapacityDose2 int  `json:"available_capacity_dose2"`
 }
 
 type ValidSession struct {
-	Hospital string
-	Date     string
-	Vaccine  string
+	Hospital   string
+	Date       string
+	Vaccine    string
+	MinimumAge int
+	MaximumAge int
 	// AgeBracket string
 	CapacityDose1 int
 	CapacityDose2 int
@@ -81,6 +84,8 @@ func GetSessionsWithSlots(result *ApiResult) []ValidSession {
 					Vaccine:       session.Vaccine,
 					CapacityDose1: session.CapacityDose1,
 					CapacityDose2: session.CapacityDose2,
+					MinimumAge:    session.MinimumAge,
+					MaximumAge:    session.MaximumAge,
 				})
 			}
 		}
