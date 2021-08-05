@@ -108,7 +108,11 @@ func GenerateApiUrl(districtId int, date time.Time) string {
 
 // Get age bracket as string, given a Session.
 func GetAgeBracket(vs Session) string {
-	return "" // this is a stub
+	if vs.AllowAllAge {
+		return fmt.Sprintf("%d+", vs.MinimumAge)
+	} else {
+		return fmt.Sprintf("%d-%d", vs.MinimumAge, vs.MaximumAge)
+	}
 }
 
 // Method to print a ValidSession.
