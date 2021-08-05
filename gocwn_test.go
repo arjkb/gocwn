@@ -52,7 +52,7 @@ func TestAgeBracketMin10Max20AllowAllFalse(t *testing.T) {
 	actualOutput := GetAgeBracket(validSession)
 
 	if actualOutput != expectedOutput {
-		t.Fatalf(`Expected %q, got %q`, actualOutput, expectedOutput)
+		t.Fatalf(`Expected %q, got %q`, expectedOutput, actualOutput)
 	}
 }
 
@@ -64,7 +64,7 @@ func TestAgeBracketMin10Max20AllowAllTrue(t *testing.T) {
 		Vaccine:       "COVISHIELD",
 		MinimumAge:    10,
 		MaximumAge:    20,
-		AllowAllAge:   false,
+		AllowAllAge:   true,
 		CapacityDose1: 100,
 		CapacityDose2: 200,
 	}
@@ -73,19 +73,19 @@ func TestAgeBracketMin10Max20AllowAllTrue(t *testing.T) {
 	actualOutput := GetAgeBracket(validSession)
 
 	if actualOutput != expectedOutput {
-		t.Fatalf(`Expected %q, got %q`, actualOutput, expectedOutput)
+		t.Fatalf(`Expected %q, got %q`, expectedOutput, actualOutput)
 	}
 }
 
 // Test age bracket with the following params:
-// MinimumAge=10, MaximumAge=0 (zero-value), AllowAllAge=false
+// MinimumAge=10, MaximumAge=0 (zero-value), AllowAllAge=true
 func TestAgeBracketMin10Max0AllowAllTrue(t *testing.T) {
 	validSession := Session{
 		Date:          "1-2-2003",
 		Vaccine:       "COVISHIELD",
 		MinimumAge:    10,
 		MaximumAge:    20,
-		AllowAllAge:   false,
+		AllowAllAge:   true,
 		CapacityDose1: 100,
 		CapacityDose2: 200,
 	}
@@ -94,6 +94,6 @@ func TestAgeBracketMin10Max0AllowAllTrue(t *testing.T) {
 	actualOutput := GetAgeBracket(validSession)
 
 	if actualOutput != expectedOutput {
-		t.Fatalf(`Expected %q, got %q`, actualOutput, expectedOutput)
+		t.Fatalf(`Expected %q, got %q`, expectedOutput, actualOutput)
 	}
 }
