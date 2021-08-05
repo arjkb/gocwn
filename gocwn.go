@@ -29,10 +29,10 @@ type Session struct {
 }
 
 type ValidSession struct {
-	Hospital   string
-	Date       string
-	Vaccine    string
-	AgeBracket string
+	Hospital      string
+	Date          string
+	Vaccine       string
+	AgeBracket    string
 	CapacityDose1 int
 	CapacityDose2 int
 }
@@ -82,7 +82,7 @@ func GetSessionsWithSlots(result *ApiResult) []ValidSession {
 					Vaccine:       session.Vaccine,
 					CapacityDose1: session.CapacityDose1,
 					CapacityDose2: session.CapacityDose2,
-					AgeBracket: GetAgeBracket(*session),
+					AgeBracket:    GetAgeBracket(*session),
 				})
 			}
 		}
