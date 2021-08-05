@@ -34,7 +34,7 @@ type ValidSession struct {
 	Vaccine    string
 	MinimumAge int
 	MaximumAge int
-	// AgeBracket string
+	AgeBracket string
 	CapacityDose1 int
 	CapacityDose2 int
 }
@@ -86,6 +86,7 @@ func GetSessionsWithSlots(result *ApiResult) []ValidSession {
 					CapacityDose2: session.CapacityDose2,
 					MinimumAge:    session.MinimumAge,
 					MaximumAge:    session.MaximumAge,
+					AgeBracket: GetAgeBracket(*session),
 				})
 			}
 		}
@@ -117,5 +118,5 @@ func GetAgeBracket(s Session) string {
 
 // Method to print a ValidSession.
 func (vs ValidSession) String() string {
-	return fmt.Sprintf("%-40s %s %-12s %4d %4d", vs.Hospital, vs.Date, vs.Vaccine, vs.CapacityDose1, vs.CapacityDose2)
+	return fmt.Sprintf("%-40s %s %-12s %-5.5s %4d %4d", vs.Hospital, vs.Date, vs.Vaccine, vs.AgeBracket, vs.CapacityDose1, vs.CapacityDose2)
 }
