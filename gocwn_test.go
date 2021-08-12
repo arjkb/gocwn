@@ -98,7 +98,6 @@ func TestAgeBracketMin10Max0AllowAllTrue(t *testing.T) {
 	}
 }
 
-
 // Test age bracket with the following params:
 // MinimumAge=10, MaximumAge=0 (zero-value), AllowAllAge=false
 func TestAgeBracketMin10Max0AllowAllFalse(t *testing.T) {

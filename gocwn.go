@@ -95,10 +95,11 @@ func GetSessionsWithSlots(result *ApiResult) []ValidSession {
 func GenerateApiUrl(districtId int, date time.Time) string {
 	const BASE_URL_CALENDAR_BY_DISTRICT = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict"
 
-	// there's probably a better way to add query params to url
-	v := url.Values{}
-	v.Set("district_id", strconv.Itoa(districtId))
-	v.Set("date", date.Format("02-01-2006"))
+	// set up query params
+	v := url.Values{
+		"district_id": {strconv.Itoa(districtId)},
+		"date":        {date.Format("02-01-2006")},
+	}
 
 	return BASE_URL_CALENDAR_BY_DISTRICT + "?" + v.Encode()
 }
